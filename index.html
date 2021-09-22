@@ -14,6 +14,15 @@
         let inputData = document.getElementById("textarea-input").value;
         let output = inputData.split(/\s+/).join(',');
         copyToClipboard(output);
+        $('.card-text').text(output);
+        $('.card').show();
+        $.LoadingOverlay("hide");
+    }
+
+    function copyResult() {
+        $.LoadingOverlay("show");
+        let resultText = $('.card-text').text();
+        copyToClipboard(resultText);
         $.LoadingOverlay("hide");
     }
 
@@ -39,6 +48,16 @@
         <textarea id="textarea-input" class="form-control" placeholder="Paste data here" style="min-height: 500px"></textarea>
         <div class="input-group-append">
             <button class="btn btn-primary" type="button" onclick="replaceWhitespaceWithCommas()">Replace</button>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 50px; display: none">
+        <div class="card-header">
+            Result:
+        </div>
+        <div class="card-body">
+            <p class="card-text"></p>
+            <button class="btn btn-primary" type="button" onclick="copyResult()">Copy</button>
         </div>
     </div>
 </div>
