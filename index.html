@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
 </head>
 <body>
@@ -19,6 +24,11 @@
         $.LoadingOverlay("hide");
     }
 
+    function clearInputs() {
+        console.log('clear');
+        $('#textarea-input').val('');
+    }
+
     function copyResult() {
         $.LoadingOverlay("show");
         let resultText = $('.card-text').text();
@@ -28,11 +38,11 @@
 
     function copyToClipboard(text) {
         let dummy = document.createElement("textarea");
-        // to avoid breaking orgain page when copying more words
+        // to avoid breaking again page when copying more words
         // cant copy when adding below this code
         // dummy.style.display = 'none'
         document.body.appendChild(dummy);
-        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+        //Be careful if you use textarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
         dummy.value = text;
         dummy.select();
         document.execCommand("copy");
@@ -45,9 +55,15 @@
     <h2>Quick replace whitespace for comma | Created by @savandriy &trade;</h2>
 
     <div class="input-group">
-        <textarea id="textarea-input" class="form-control" placeholder="Paste data here" style="min-height: 500px"></textarea>
+        <textarea id="textarea-input" class="form-control" placeholder="Paste data here"
+                  style="min-height: 500px"></textarea>
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button" onclick="replaceWhitespaceWithCommas()">Replace</button>
+            <div class="btn-group-vertical">
+                <button class="btn btn-danger" style="height: 10%;" type="button" onclick="clearInputs()">Clear</button>
+                <button class="btn btn-primary" style="margin-left: 0; height: 90%;" type="button"
+                        onclick="replaceWhitespaceWithCommas()">Replace
+                </button>
+            </div>
         </div>
     </div>
 
