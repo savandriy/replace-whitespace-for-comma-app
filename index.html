@@ -10,18 +10,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
 </head>
 <body>
 <script>
     function replaceWhitespaceWithCommas() {
-        $.LoadingOverlay("show");
         let inputData = document.getElementById("textarea-input").value;
-        let output = inputData.split(/\s+/).join(',');
+        let output = inputData.trim().split(/\s+/).join(',');
         copyToClipboard(output);
         $('.card-text').text(output);
-        $('.card').show();
-        $.LoadingOverlay("hide");
+        // show only if there's what to show
+        if (output.length) {
+            $('.card').show();
+        } else {
+            $('.card').hide();
+        }
+
+        $('#textarea-input').focus()
     }
 
     function clearInputs() {
@@ -30,10 +34,8 @@
     }
 
     function copyResult() {
-        $.LoadingOverlay("show");
         let resultText = $('.card-text').text();
         copyToClipboard(resultText);
-        $.LoadingOverlay("hide");
     }
 
     function copyToClipboard(text) {
@@ -56,13 +58,10 @@
 
     <div class="input-group">
         <textarea id="textarea-input" class="form-control" placeholder="Paste data here"
-                  style="min-height: 500px"></textarea>
+                  style="min-height: 500px" oninput="replaceWhitespaceWithCommas()"></textarea>
         <div class="input-group-append">
             <div class="btn-group-vertical">
-                <button class="btn btn-danger" style="height: 10%;" type="button" onclick="clearInputs()">Clear</button>
-                <button class="btn btn-primary" style="margin-left: 0; height: 90%;" type="button"
-                        onclick="replaceWhitespaceWithCommas()">Replace
-                </button>
+                <button class="btn btn-danger" type="button" onclick="clearInputs()">Clear</button>
             </div>
         </div>
     </div>
