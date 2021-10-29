@@ -10,6 +10,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <script>
@@ -56,12 +57,14 @@
 <div class="container">
     <h2>Quick replace whitespace for comma | Created by @savandriy &trade;</h2>
 
+    <div class="btn-group" style="margin-bottom: 5px">
+        <button type="button" class="btn btn-danger" onclick="clearInputs()">Clear <i class="fa fa-times"></i></button>
+    </div>
     <div class="input-group">
         <textarea id="textarea-input" class="form-control" placeholder="Paste data here"
                   style="min-height: 500px" oninput="replaceWhitespaceWithCommas()"></textarea>
         <div class="input-group-append">
             <div class="btn-group-vertical">
-                <button class="btn btn-danger" type="button" onclick="clearInputs()">Clear</button>
             </div>
         </div>
     </div>
